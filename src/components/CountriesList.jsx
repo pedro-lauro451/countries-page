@@ -2,6 +2,7 @@ import React from 'react'
 import { useContext } from 'react'
 import { GlobalContext } from '../GlobalContext'
 import { useQuery } from 'react-query'
+import '../css/countriesList.css'
 
 const CountriesList = () => {
     const {
@@ -19,9 +20,24 @@ const CountriesList = () => {
     }
 
     return (
-        <div>
-            {data.length > 0 ? <div>{data[1].name.common}</div> : ''}
-        </div>
+        <>
+            <div className='container'>
+                {
+                    data.map(country => (
+                        <div className="item" key={country.name.common}>
+                            <img className="flag" src={country.flags.png}></img>
+                            <div className="card">
+                                <h4>{country.name.common.split(",")[0]}</h4>
+                                <ul>
+                                    <li>Population: {parseFloat(country.population).toLocaleString('en')}</li>
+                                    <li>Region: {country.region}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </>
     )
 }
 
