@@ -1,5 +1,11 @@
 :root {
-  background-color: #242424;
+  background-color: #060624;
   color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }
 

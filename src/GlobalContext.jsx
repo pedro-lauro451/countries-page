@@ -1,7 +1,9 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const GlobalContext = createContext({
-    fetchCountries: async () => {}
+    fetchCountries: async () => {},
+    search: '',
+    handleOnChange: () => {}
 });
 
 const GlobalState = ({children}) => {
@@ -11,8 +13,17 @@ const GlobalState = ({children}) => {
         return res.json();
     }
 
+    const [search, setSearch] = useState('');
+
+    const handleOnChange = (event) => {
+        setSearch(event.target.value);
+        console.log(search);
+    };
+
     const contextValue = {
-        fetchCountries
+        fetchCountries,
+        search,
+        handleOnChange
     };
 
     return (
