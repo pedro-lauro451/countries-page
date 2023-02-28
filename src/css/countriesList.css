@@ -3,6 +3,7 @@ h4 {
     padding: 10px 0px 20px 0px;
     word-wrap: break-word;
     margin-left: 10px;
+    font-size: 15px;
 }
 
 ul {
@@ -16,6 +17,7 @@ li {
     padding-top: 5px;
     padding-bottom: 15px;
     margin-left: 10px;
+    font-size: 14px;
 }
 
 .container {
@@ -42,7 +44,6 @@ li {
 .card {
   
     border-radius: 0px 0px 5px 5px;
-    box-shadow: 0px 3px 5px #000000;
     border: 2px solid #005892;
     border-top: transparent;
 }

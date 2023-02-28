@@ -3,10 +3,12 @@ import { useContext } from 'react'
 import { GlobalContext } from '../GlobalContext'
 import { useQuery } from 'react-query'
 import '../css/countriesList.css'
+import AnimateIn from './AnimateIn'
 
 const CountriesList = () => {
     const {
-        fetchCountries
+        fetchCountries,
+        search
     } = useContext(GlobalContext);
 
     const { data, status } = useQuery('countries', fetchCountries);
@@ -20,10 +22,11 @@ const CountriesList = () => {
     }
 
     return (
-            <div className='container'>
-                {
-                    data.map(country => (
-                        <div className="item" key={country.name.common}>
+        <div className='container'>
+            {
+                data.filter(input => input.name.common.toLowerCase().startsWith(search.toLowerCase())).map(country => (
+                    <AnimateIn key={country.name.common}>
+                        <div className="item">
                             <img className="flag" src={country.flags.svg}></img>
                             <div className="card">
                                 <h4>{country.name.common.split(",")[0]}</h4>
@@ -33,9 +36,10 @@ const CountriesList = () => {
                                 </ul>
                             </div>
                         </div>
-                    ))
-                }
-            </div>
+                    </AnimateIn>
+                ))
+            }
+        </div>
     )
 }
 

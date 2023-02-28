@@ -6,12 +6,12 @@ import { GlobalContext } from '../GlobalContext'
 
 const Search = () => {
   const {
-    search, handleOnChange
+    handleOnChange
   } = useContext(GlobalContext);
 
   return (
     <div className="searchContainer">
-      <input className="search" placeholder="Search by name..."></input>
+      <input onChange={handleOnChange} className="search" placeholder="Search by name..."></input>
     </div>
   )
 }

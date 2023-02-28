@@ -17,7 +17,6 @@ const GlobalState = ({children}) => {
 
     const handleOnChange = (event) => {
         setSearch(event.target.value);
-        console.log(search);
     };
 
     const contextValue = {
