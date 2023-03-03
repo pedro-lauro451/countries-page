@@ -3,7 +3,9 @@ import { createContext, useState } from "react";
 export const GlobalContext = createContext({
     fetchCountries: async () => {},
     search: '',
-    handleOnChange: () => {}
+    handleOnChange: () => {},
+    theme: '',
+    toggleThemeIcon: () => {}
 });
 
 const GlobalState = ({children}) => {
@@ -15,14 +17,27 @@ const GlobalState = ({children}) => {
 
     const [search, setSearch] = useState('');
 
+    const [theme, setTheme] = useState('dark');
+
     const handleOnChange = (event) => {
         setSearch(event.target.value);
+    };
+
+    const toggleThemeIcon = () => {
+        if(theme == "dark") {
+            setTheme("light");
+        }
+        if(theme == "light") {
+            setTheme("dark");
+        }
     };
 
     const contextValue = {
         fetchCountries,
         search,
-        handleOnChange
+        handleOnChange,
+        theme,
+        toggleThemeIcon
     };
 
     return (
