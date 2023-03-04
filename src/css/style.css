@@ -113,11 +113,24 @@ html, body {
     margin-top: 30px;
 }
 
+.search__dropdown {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: 133px;
+    width: 250px;
+}
+
 @media only screen and (max-width: 768px) {
     .search {
         justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
     .search__search-bar {
+        margin-left: 0px;
+    }
+    .search__dropdown {
+        margin-right: 0px;
         margin-left: 0px;
     }
 }

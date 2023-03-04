@@ -13,7 +13,8 @@ const CountriesList = () => {
     const {
         fetchCountries,
         search,
-        theme
+        theme,
+        selectedValue
     } = useContext(GlobalContext);
 
     const [scrollTop, setScrollTop] = useState(false);
@@ -46,10 +47,15 @@ const CountriesList = () => {
     }
 
     return (
-        <div className='countries-list' style={{minHeight: "100vh"}}>]
+        <div className='countries-list' style={{minHeight: "100vh"}}>
             <div className='countries-list__list'>
             {
-                data.filter(input => input.name.common.toLowerCase().startsWith(search.toLowerCase())).map(country => (
+                data.filter(input => (selectedValue.value != "" ? input.region == selectedValue.value 
+                : input.region == "Africa" || input.region == "Americas" || input.region == "Asia"
+                || input.region == "Europe" || input.region == "Oceania") 
+                && input.name.common.toLowerCase().startsWith(search.toLowerCase())
+                )
+                .map(country => (
                     <AnimateIn key={country.name.common}>
                         <div className="countries-list__item">
                             <img className="countries-list__flag" src={country.flags.svg}
@@ -66,7 +72,7 @@ const CountriesList = () => {
                             </div>
                         </div>
                     </AnimateIn>
-                )) 
+                ))
             } 
             </div>
             {scrollTop && (<button className='countries-list__scroll-button' onClick={bottomToTop}>

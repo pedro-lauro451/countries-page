@@ -5,7 +5,10 @@ export const GlobalContext = createContext({
     search: '',
     handleOnChange: () => {},
     theme: '',
-    toggleThemeIcon: () => {}
+    toggleThemeIcon: () => {},
+    selectedValue: {},
+    handleDropdownInput: () => {},
+    options: []
 });
 
 const GlobalState = ({children}) => {
@@ -15,12 +18,27 @@ const GlobalState = ({children}) => {
         return res.json();
     }
 
+    const options = [
+        {value: "", label: "All"},
+        {value: "Africa", label: "Africa"},
+        {value: "Americas", label: "Americas"},
+        {value: "Asia", label: "Asia"},
+        {value: "Europe", label: "Europe"},
+        {value: "Oceania", label: "Oceania"}
+      ];
+
+    const [selectedValue, setSelectedValue] = useState(options[0]);
+
     const [search, setSearch] = useState('');
 
     const [theme, setTheme] = useState('dark');
 
     const handleOnChange = (event) => {
         setSearch(event.target.value);
+    };
+
+    const handleDropdownInput = value => {
+        setSelectedValue(value);
     };
 
     const toggleThemeIcon = () => {
@@ -37,7 +55,10 @@ const GlobalState = ({children}) => {
         search,
         handleOnChange,
         theme,
-        toggleThemeIcon
+        toggleThemeIcon,
+        selectedValue,
+        handleDropdownInput,
+        options
     };
 
     return (
