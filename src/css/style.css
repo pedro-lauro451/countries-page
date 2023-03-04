@@ -14,6 +14,11 @@ html, body {
 
 .countries-list {
     display: flex;
+    flex-direction: column;
+}
+
+.countries-list__list {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-content: space-between;
@@ -59,6 +64,19 @@ html, body {
     border-radius: 5px 5px 0px 0px;
 }
 
+.countries-list__scroll-button {
+    border:none;
+    background-color:transparent;
+    outline:none;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.countries-list__scroll-button-icon {
+    cursor: pointer;
+}
+
 .header-component {
     display: flex;
 }
@@ -74,6 +92,7 @@ html, body {
 .header-component__icons__theme-icon {
     margin-top: 13px;
     margin-right: 20px;
+    cursor: pointer;
 }
 
 .search {
@@ -90,6 +109,15 @@ html, body {
     width: 250px;
     height: 30px;
     border-radius: 10px;
-    margin-left: 130px;
+    margin-left: 133px;
     margin-top: 30px;
+}
+
+@media only screen and (max-width: 768px) {
+    .search {
+        justify-content: center;
+    }
+    .search__search-bar {
+        margin-left: 0px;
+    }
 }

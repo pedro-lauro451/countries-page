@@ -4,6 +4,10 @@ import { GlobalContext } from '../GlobalContext'
 import { useQuery } from 'react-query'
 import '../css/style.css'
 import AnimateIn from './AnimateIn'
+import { useState, useEffect } from 'react'
+import { BsFillArrowUpCircleFill } from "react-icons/bs"
+
+const ScrollIcon = BsFillArrowUpCircleFill;
 
 const CountriesList = () => {
     const {
@@ -11,6 +15,25 @@ const CountriesList = () => {
         search,
         theme
     } = useContext(GlobalContext);
+
+    const [scrollTop, setScrollTop] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+            if(window.scrollY > 340) {
+                setScrollTop(true);
+            } else {
+                setScrollTop(false);
+            }
+        });
+    }, []);
+
+    const bottomToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    };
 
     const { data, status } = useQuery('countries', fetchCountries);
 
@@ -23,7 +46,8 @@ const CountriesList = () => {
     }
 
     return (
-        <div className='countries-list' style={{minHeight: "100vh"}}>
+        <div className='countries-list' style={{minHeight: "100vh"}}>]
+            <div className='countries-list__list'>
             {
                 data.filter(input => input.name.common.toLowerCase().startsWith(search.toLowerCase())).map(country => (
                     <AnimateIn key={country.name.common}>
@@ -44,6 +68,10 @@ const CountriesList = () => {
                     </AnimateIn>
                 )) 
             } 
+            </div>
+            {scrollTop && (<button className='countries-list__scroll-button' onClick={bottomToTop}>
+                <ScrollIcon style={{color: theme == "dark" ? "#005892" : "#cca752"}} className='countries-list__scroll-button-icon' size={40}/>
+            </button>)}
         </div>
     )
 }
