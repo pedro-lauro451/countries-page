@@ -1,21 +1,37 @@
 import React from 'react'
 import { useContext } from 'react'
 import { GlobalContext } from '../GlobalContext'
+import { ThemeContext } from '../ThemeContext'
+import { SearchContext } from '../SearchContext'
 import { useQuery } from 'react-query'
 import '../css/style.css'
 import AnimateIn from './AnimateIn'
 import { useState, useEffect } from 'react'
 import { BsFillArrowUpCircleFill } from "react-icons/bs"
+import Country from './Country'
 
 const ScrollIcon = BsFillArrowUpCircleFill;
 
 const CountriesList = () => {
     const {
         fetchCountries,
-        search,
-        theme,
-        selectedValue
+        handleClickedCountry,
+        selectedCountry,
+        
     } = useContext(GlobalContext);
+
+    const {
+        theme
+    } = useContext(ThemeContext);
+
+    const {
+        search,
+        selectedValue,
+    } = useContext(SearchContext);
+
+    const country = {
+        name: selectedCountry.name.common
+    };
 
     const [scrollTop, setScrollTop] = useState(false);
 
@@ -48,6 +64,9 @@ const CountriesList = () => {
 
     return (
         <div className='countries-list' style={{minHeight: "100vh"}}>
+            <div>
+                <Country name={country.name}/>
+            </div>
             <div className='countries-list__list'>
             {
                 data.filter(input => (selectedValue.value != "" ? input.region == selectedValue.value 
@@ -57,7 +76,7 @@ const CountriesList = () => {
                 )
                 .map(country => (
                     <AnimateIn key={country.name.common}>
-                        <div className="countries-list__item">
+                        <div className="countries-list__item" onClick={() => {handleClickedCountry(country)}}>
                             <img className="countries-list__flag" src={country.flags.svg}
                             style={{backgroundColor: theme == "dark" ? "#0d0d40" : "#F9F7F5"}}></img>
                             <div className="countries-list__card" style={{backgroundColor: theme == "dark" ? "#0d0d40" : "#F9F7F5"}}>

@@ -2,13 +2,8 @@ import { createContext, useState } from "react";
 
 export const GlobalContext = createContext({
     fetchCountries: async () => {},
-    search: '',
-    handleOnChange: () => {},
-    theme: '',
-    toggleThemeIcon: () => {},
-    selectedValue: {},
-    handleDropdownInput: () => {},
-    options: []
+    handleClickedCountry: () => {},
+    selectedCountry: {}
 });
 
 const GlobalState = ({children}) => {
@@ -18,47 +13,20 @@ const GlobalState = ({children}) => {
         return res.json();
     }
 
-    const options = [
-        {value: "", label: "All"},
-        {value: "Africa", label: "Africa"},
-        {value: "Americas", label: "Americas"},
-        {value: "Asia", label: "Asia"},
-        {value: "Europe", label: "Europe"},
-        {value: "Oceania", label: "Oceania"}
-      ];
-
-    const [selectedValue, setSelectedValue] = useState(options[0]);
-
-    const [search, setSearch] = useState('');
-
-    const [theme, setTheme] = useState('dark');
-
-    const handleOnChange = (event) => {
-        setSearch(event.target.value);
-    };
-
-    const handleDropdownInput = value => {
-        setSelectedValue(value);
-    };
-
-    const toggleThemeIcon = () => {
-        if(theme == "dark") {
-            setTheme("light");
+    const [selectedCountry, setSelectedCountry] = useState({
+        name: {
+            common: ''
         }
-        if(theme == "light") {
-            setTheme("dark");
-        }
+    });
+
+    const handleClickedCountry = value => {
+        setSelectedCountry(value);
     };
 
     const contextValue = {
         fetchCountries,
-        search,
-        handleOnChange,
-        theme,
-        toggleThemeIcon,
-        selectedValue,
-        handleDropdownInput,
-        options
+        handleClickedCountry,
+        selectedCountry
     };
 
     return (

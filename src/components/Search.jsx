@@ -2,18 +2,22 @@ import React from 'react'
 import '../css/style.css'
 
 import { useContext } from 'react'
-import { GlobalContext } from '../GlobalContext'
+import { SearchContext } from '../SearchContext'
+import { ThemeContext } from '../ThemeContext'
 
 import Select from 'react-select'
 
 const Search = () => {
   const {
     handleOnChange,
-    theme,
     selectedValue,
     handleDropdownInput,
     options
-  } = useContext(GlobalContext);
+  } = useContext(SearchContext);
+
+  const {
+    theme
+  } = useContext(ThemeContext);
 
   const customStyles = {
     option: (baseStyles) => ({

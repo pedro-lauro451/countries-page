@@ -1,6 +1,6 @@
 import React from 'react'
 import { useContext } from 'react'
-import { GlobalContext } from '../GlobalContext'
+import { ThemeContext } from '../ThemeContext'
 import '../css/style.css'
 import { BsFillSunFill } from "react-icons/bs"
 import { BsMoonFill } from "react-icons/bs"
@@ -12,7 +12,7 @@ const HeaderComponent = () => {
   const {
     theme,
     toggleThemeIcon
-  } = useContext(GlobalContext);
+  } = useContext(ThemeContext);
 
   return (
     <div className="header-component" style={{backgroundColor: theme == "dark" ? "#0d0d40" : "#f0f0f0"}}>
