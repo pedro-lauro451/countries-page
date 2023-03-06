@@ -16,7 +16,7 @@ const HeaderComponent = () => {
 
   return (
     <div className="header-component" style={{backgroundColor: theme == "dark" ? "#0d0d40" : "#f0f0f0"}}>
-      <h3 className="header-component__title" style={{color: theme == "dark" ? "#ffffff" : "#cca752"}}>Countries Info</h3>
+      <h3 className="header-component__title" style={{color: theme == "dark" ? "#ffffff" : "#cca752"}}>Where in the World?</h3>
       <div className='header-component__icons'>
         {theme == "dark" ? <LightIcon style={{color: "#FFBF00"}} className='header-component__icons__theme-icon' size={30} onClick={toggleThemeIcon}/> 
         : <DarkIcon style={{color: "#005892"}} className='header-component__icons__theme-icon' size={30} onClick={toggleThemeIcon}/>}

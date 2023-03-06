@@ -120,6 +120,34 @@ html, body {
     width: 250px;
 }
 
+.country {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.country__flag {
+    width: 100%;
+}
+
+.country__information__item{
+    font-weight: normal;
+}
+
+.country__information__button {
+    padding: 10px 20px 10px 20px;
+    border: 1px solid transparent;
+    color: #ffffff;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 768px) {
     .search {
         justify-content: center;

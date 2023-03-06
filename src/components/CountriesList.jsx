@@ -17,7 +17,7 @@ const CountriesList = () => {
         fetchCountries,
         handleClickedCountry,
         selectedCountry,
-        
+        isCountryClicked,        
     } = useContext(GlobalContext);
 
     const {
@@ -30,7 +30,13 @@ const CountriesList = () => {
     } = useContext(SearchContext);
 
     const country = {
-        name: selectedCountry.name.common
+        name: selectedCountry.name.common,
+        population: selectedCountry.population,
+        region: selectedCountry.region,
+        subregion: selectedCountry.subregion,
+        capital: selectedCountry.capital,
+        tld: selectedCountry.tld,
+        flag: selectedCountry.flags.svg
     };
 
     const [scrollTop, setScrollTop] = useState(false);
@@ -64,11 +70,22 @@ const CountriesList = () => {
 
     return (
         <div className='countries-list' style={{minHeight: "100vh"}}>
+            
             <div>
-                <Country name={country.name}/>
+                { isCountryClicked == 1 ?   
+                    <Country 
+                    name={country.name} 
+                    population={country.population}
+                    region={country.region}
+                    subregion={country.subregion}
+                    capital={country.capital}
+                    topLevelDomain={country.tld}
+                    flag={country.flag}/> 
+                    : ''
+                }
             </div>
             <div className='countries-list__list'>
-            {
+            { isCountryClicked == 0 ?
                 data.filter(input => (selectedValue.value != "" ? input.region == selectedValue.value 
                 : input.region == "Africa" || input.region == "Americas" || input.region == "Asia"
                 || input.region == "Europe" || input.region == "Oceania") 
@@ -91,7 +108,7 @@ const CountriesList = () => {
                             </div>
                         </div>
                     </AnimateIn>
-                ))
+                )) : ''
             } 
             </div>
             {scrollTop && (<button className='countries-list__scroll-button' onClick={bottomToTop}>

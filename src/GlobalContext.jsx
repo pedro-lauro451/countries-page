@@ -3,7 +3,9 @@ import { createContext, useState } from "react";
 export const GlobalContext = createContext({
     fetchCountries: async () => {},
     handleClickedCountry: () => {},
-    selectedCountry: {}
+    selectedCountry: {},
+    isCountryClicked: '',
+    handleClose: () => {}
 });
 
 const GlobalState = ({children}) => {
@@ -15,18 +17,35 @@ const GlobalState = ({children}) => {
 
     const [selectedCountry, setSelectedCountry] = useState({
         name: {
-            common: ''
+            common: '',
+        },
+        population: 0,
+        region: '',
+        subregion: '',
+        capital: [''],
+        tld: [''],
+        flags: {
+            svg: ''
         }
     });
 
+    const [isCountryClicked, setIsCountryClicked] = useState(0);
+
+    const handleClose = () => {
+        setIsCountryClicked(0);
+    };
+
     const handleClickedCountry = value => {
         setSelectedCountry(value);
+        setIsCountryClicked(1);
     };
 
     const contextValue = {
         fetchCountries,
         handleClickedCountry,
-        selectedCountry
+        selectedCountry,
+        isCountryClicked,
+        handleClose
     };
 
     return (

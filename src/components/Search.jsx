@@ -4,10 +4,16 @@ import '../css/style.css'
 import { useContext } from 'react'
 import { SearchContext } from '../SearchContext'
 import { ThemeContext } from '../ThemeContext'
+import { GlobalContext } from '../GlobalContext'
 
 import Select from 'react-select'
 
 const Search = () => {
+
+  const {
+    isCountryClicked,
+  } = useContext(GlobalContext);
+
   const {
     handleOnChange,
     selectedValue,
@@ -30,7 +36,7 @@ const Search = () => {
       ...baseStyles,
       backgroundColor: theme == "dark" ? "#005892" : "#cca752",
     }),
-    
+
     control: (baseStyles) => ({
       ...baseStyles,
       backgroundColor: theme == "dark" ? "#005892" : "#cca752",
@@ -49,18 +55,24 @@ const Search = () => {
   }
 
   return (
-    <div className="search">
-      <input onChange={handleOnChange} className="search__search-bar" style={{backgroundColor: theme == "dark" ? "#005892" 
-      : "#cca752"}} 
-      placeholder="Search by name..."></input>
-      <Select 
-      className='search__dropdown' 
-      options={options} 
-      onChange={handleDropdownInput} 
-      value={selectedValue}
-      styles={customStyles}
-      />
-    </div>
+    <>
+    { isCountryClicked == 0 ?
+      <div className="search">
+        <input onChange={handleOnChange} className="search__search-bar" style={{
+          backgroundColor: theme == "dark" ? "#005892"
+            : "#cca752"
+        }}
+          placeholder="Search by name..."></input>
+        <Select
+          className='search__dropdown'
+          options={options}
+          onChange={handleDropdownInput}
+          value={selectedValue}
+          styles={customStyles}
+        />
+      </div> : ''
+    }
+    </>
   )
 }
 
